@@ -1,0 +1,58 @@
+<form class="border border-light p-5" [formGroup]="orderForm" (ngSubmit)="onSubmit()"
+      xmlns="http://www.w3.org/1999/html">
+  <input hidden type="text" formControlName="cartId" class="form-control"/>
+  <input hidden type="text" formControlName="dateOfOrder" class="form-control"/>
+
+  <p class="h4 mb-4 text-center">Order</p>
+  <hr>
+  <p class="h4 mb-4 text-center">Shipping Details:</p>
+  <hr>
+  <div class="form-group">
+    <label for="city">City:</label>
+    <select class="browser-default custom-select mb-4" id="city" formControlName="city" (change)="setCity($event)"
+            [ngClass]="{ 'is-invalid': submitted && f.city.errors }">
+      <option [value]="city" *ngFor="let city of cities">
+        {{city}}
+      </option>
+    </select>
+    <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+      <div *ngIf="f.city.errors.required">City is required</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="street">Street:</label>
+    <input type="text" id="street" formControlName="street" class="form-control"
+           [ngClass]="{ 'is-invalid': submitted && f.street.errors }"/>
+    <div *ngIf="submitted && f.street.errors" class="invalid-feedback">
+      <div *ngIf="f.street.errors.required">Street is required</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="dateToDeliver">Shipping Date:</label>
+    <input [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" [min]="min" [max]="max" id="dateToDeliver" formControlName="dateToDeliver"
+           placeholder="Shipping Date" class="browser-default custom-select mb-4"
+           [ngClass]="{ 'is-invalid': submitted && f.dateToDeliver.errors }">
+    <owl-date-time #dt1 [pickerType]="'calendar'"></owl-date-time>
+    <div *ngIf="submitted && f.dateToDeliver.errors" class="invalid-feedback">
+      <div *ngIf="f.dateToDeliver.errors.required">City is required</div>
+    </div>
+  </div>
+
+  <p class="h4 mb-4 text-center">Payments</p>
+  <hr>
+
+  <div class="form-group">
+  <label for="creditCard">Credit Card:</label>
+  <input type="text" class="form-control" id="creditCard"
+         formControlName="creditCard4digit">
+</div>
+
+  <div class="form-group">
+    <label for="totalPrice">Total Price</label>
+    <input readonly type="text" class="form-control" id="totalPrice" formControlName="totalPrice"
+           value="{{totalPrice | currency:'USD':'symbol-narrow':'1.2-2' }}">
+  </div>
+  <button class="btn btn-info btn-block my-4" type="submit">Order</button>
+</form>

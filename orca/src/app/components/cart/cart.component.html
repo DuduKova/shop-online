@@ -1,0 +1,45 @@
+<div [@openClose]="isOpen ? 'open' : 'closed'"
+     class="modal-dialog modal-left modal-notify modal-info" role="document">
+  <div class="modal-content">
+    <!--Header-->
+    <div class="modal-header">
+      <p class="heading lead">Shopping Cart</p>
+      <button type="button" class="close" aria-label="Close" (click)="toggle()">
+        <span aria-hidden="true" class="white-text">×</span>
+      </button>
+    </div>
+
+    <!--Body-->
+    <div class="modal-body">
+      <div class="text-center">
+        <i class="far fa-file-alt fa-4x mb-3 animated rotateIn"></i>
+        <p>
+          <strong>List of your products</strong>
+        </p>
+      </div>
+
+      <hr>
+
+      <div class="list-group-flush" *ngFor="let item of (currentCart?.items) let i = index">
+        <div class="list-group-item">
+          <p class="mb-0"><i class="fas fa-times mr-4 red p-3 white-text rounded" aria-hidden="true"
+                             (click)="deleteItem(item._id)"></i>
+            quantity: {{item.quantity}}
+            totalPrice: {{item.totalPrice | currency:'USD':'symbol-narrow':'1.2-2'}}
+          </p>
+        </div>
+      </div>
+
+      Total cart price : {{totalPrice | currency:'USD':'symbol-narrow':'1.2-2'}}
+
+    </div>
+
+    <!--Footer-->
+    <div class="modal-footer justify-content-center">
+      <a type="button" class="btn btn-primary waves-effect waves-light" routerLink="order">Order
+        <i class="fa fa-paper-plane ml-1 text-white"></i>
+      </a>
+      <a type="button" class="btn btn-outline-primary waves-effect" data-dismiss="modal" (click)="toggle()">Hide</a>
+    </div>
+  </div>
+</div>

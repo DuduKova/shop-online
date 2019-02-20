@@ -1,0 +1,60 @@
+<div class="modal-dialog modal-notify modal-primary modal-side modal-top-right" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+        <p class="heading">{{selectedProduct?.name}}</p>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hide()">
+          <span aria-hidden="true" class="white-text">&times;</span>
+        </button>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-3">
+            <p></p>
+            <p class="text-center">
+              <i class="fas fa-shopping-cart fa-4x"></i>
+            </p>
+          </div>
+
+          <div class="col-9">
+            <form [formGroup]="productForm">
+              <div class="form-group">
+                <input hidden type="text" formControlName="productId" class="form-control"/>
+              </div>
+              <div class="form-group">
+                <label>Quantity</label>
+                <input #quantity type="number" formControlName="quantity" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.quantity.errors }" />
+                <div *ngIf="submitted && f.quantity.errors" class="invalid-feedback">
+                  <div *ngIf="f.quantity.errors.required">Have to be al least one</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Total price</label>
+                <input readonly type="text" value="{{selectedProduct?.price * quantity.value | currency:'USD':'symbol-narrow':'1.2-2' }}" formControlName="totalPrice" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.totalPrice.errors }" />
+                <div *ngIf="submitted && f.totalPrice.errors" class="invalid-feedback">
+                  <div *ngIf="f.totalPrice.errors.required">ERROR</div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <a type="button" mdbBtn color="primary" class="waves-effect" mdbWavesEffect (click)="onSubmit()">Add to Cart
+          <i class="fas fa-shopping-cart ml-1"></i>
+        </a>
+        <a type="button" mdbBtn color="primary" outline="true" class="waves-effect" mdbWavesEffect (click)="hide()"
+           data-dismiss="modal">No, thanks</a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>

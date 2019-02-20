@@ -1,0 +1,56 @@
+<form class="form-group modal-dialog modal-left modal-notify modal-info"
+      [formGroup]="productForm" (ngSubmit)="onSubmit()" [@openClose]="isOpen ? 'open' : 'closed'">
+  <div class="modal-content">
+    <div class="modal-header">
+      <p class="h4 mb-4 text-center" *ngIf="selectedProduct">Edit Product</p>
+      <p class="h4 mb-4 text-center" *ngIf="selectedProduct === null">Add Product</p>
+      <button type="button" class="close" aria-label="Close" (click)="toggle()">
+        <span aria-hidden="true" class="white-text">×</span>
+      </button>
+    </div>
+
+    <hr>
+    <div class="modal-body">
+      <div class="text-center">
+        <div class="form-group">
+          <label for="company">Select company you want to add product to.</label>
+          <select class="browser-default custom-select mb-4" formControlName="company" id="company" (change)="selectCompany()">
+            <option *ngFor="let company of currentCompanies" [ngValue]="company">
+              {{company.name | titlecase}}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="name">Product Name:</label>
+          <input type="text" class="form-control" id="name" formControlName="name"
+                 value="{{selectedProduct?.name}}">
+        </div>
+
+        <div class="form-group">
+          <label for="price">Price</label>
+          <input type="number" class="form-control" id="price" formControlName="price"
+                 value="{{selectedProduct?.price}}">
+        </div>
+
+        <div class="form-group">
+          <label for="image">Image: <i class="far fa-image"></i></label>
+          <input type="file" name="photo" id="image" ng2FileSelect [uploader]="uploader" (change)="onFileChange($event)"
+                 formControlName="image"/>
+        </div>
+
+        <img src="../../../assets/{{selectedProduct?.image.replace('C:\\fakepath\\', '')}}"
+             style="width:250px;height:200px">
+
+        <div class="form-group mb-4">
+          <label for="description">Product Description</label>
+          <textarea formControlName="description" type="text" id="description" class="md-textarea form-control" rows="3"
+                    value="{{selectedProduct?.description}}"
+          ></textarea>
+        </div>
+
+        <button class="btn btn-info btn-block my-4" type="submit" [disabled]="productForm.invalid && !selectedProduct">Add Product</button>
+      </div>
+    </div>
+  </div>
+</form>

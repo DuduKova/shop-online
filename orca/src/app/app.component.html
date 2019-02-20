@@ -1,0 +1,5 @@
+<app-navbar *ngIf="currentUser"></app-navbar>
+<app-cart class="float-left" *ngIf="currentUser"></app-cart>
+<app-product-form class="float-left" *ngIf="currentUser?.isAdmin"></app-product-form>
+<alert></alert>
+<router-outlet></router-outlet>

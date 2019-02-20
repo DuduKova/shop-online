@@ -1,0 +1,10 @@
+<div class="row">
+    <app-product-item *ngFor="let product of (selectedCompany)?.products" class="col-xsm-12 col-sm-6 col-md-4 col-lg-4"
+                      [product]="product" (productModalShow)="showProductModal()"></app-product-item>
+</div>
+
+<app-product-modal mdbModal #productModal="mdbModal" class="modal fade left" tabindex="-1" role="dialog"
+                   aria-labelledby="myModalLabel" aria-hidden="true"
+                   (closed)="onClosed($event)" (close)="onClose($event)" (opened)="onOpened($event)"
+                   (open)="onOpen($event)" (closePM)="closeProductModal()" [selectedProduct]="selectedProduct">
+</app-product-modal>

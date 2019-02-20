@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,4CAA6C;EAC3C,aAAa,EAAE,iBAAiB;EAChC,UAAU,EAAE,iBAAiB;;AAE/B,4CAA6C;EAC3C,KAAK,EAAE,OAAO;;AAEhB,qCAAsC;EACpC,KAAK,EAAE,OAAO;;AAEhB,uCAAwC;EACtC,KAAK,EAAE,OAAO;;AAGhB,6CAA8C;EAC5C,aAAa,EAAE,iBAAiB;EAChC,UAAU,EAAE,iBAAiB;;AAE/B,6CAA8C;EAC5C,KAAK,EAAE,OAAO;;AAEhB,sCAAuC;EACrC,KAAK,EAAE,OAAO;;AAEhB,wCAAyC;EACvC,KAAK,EAAE,OAAO",
+"sources": ["product-form.component.scss"],
+"names": [],
+"file": "product-form.component.css"
+}

@@ -1,0 +1,15 @@
+﻿<div class="jumbotron">
+  <div class="container">
+      <div class="row">
+        <app-order-form class="float-left" *ngIf="currentUser?.isAdmin === false"></app-order-form>
+      <app-product-item *ngFor="let product of allProducts" [product]="product"
+                        class="col-sm-12 col-md-6 col-lg-4"
+                        (productModalShow)="showProductModal()"></app-product-item>
+      </div>
+      <app-product-modal mdbModal #productModal="mdbModal" class="modal fade left" tabindex="-1" role="dialog"
+                         aria-labelledby="myModalLabel" aria-hidden="true"
+                         (closed)="onClosed($event)" (close)="onClose($event)" (opened)="onOpened($event)"
+                         (open)="onOpen($event)" (closePM)="closeProductModal()" [selectedProduct]="selectedProduct">
+      </app-product-modal>
+      </div>
+</div>
